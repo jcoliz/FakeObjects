@@ -2,6 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>jcoliz.FakeObjects</PackageId>
+    <Version>$(GitVersion)</Version>
+    <Description>This is a .NET Core 3.1 library for creating fake objects used in tests. It can be used in applications built on any version of .NET from Core 3.1 onward, including .NET 6.0.</Description>
+    <PackageProjectUrl>https://github.com/jcoliz/FakeObjects</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReleaseNotes>$(ReleaseNotes)</PackageReleaseNotes>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/jcoliz/FakeObjects.git</RepositoryUrl>
+    <Authors>James Coliz</Authors>
+    <Company>jcoliz</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>    
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\images\icon.png" Pack="true" PackagePath="\"/>    
+    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>    
+  </ItemGroup>
 
 </Project>
