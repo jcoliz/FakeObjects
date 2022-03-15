@@ -13,8 +13,17 @@ namespace FakeObjects.Tests;
 [TestClass]
 public class UsageTests: IFakeObjectsSaveTarget
 {
+    /// <summary>
+    /// The system under test
+    /// </summary>
     private Repository repository { get; set; } = new Repository();
 
+    /// <summary>
+    /// Add items to the current system under test
+    /// </summary>
+    /// <remarks>
+    /// Implements IFakeObjectsSaveTarget
+    /// </remarks>
     public void AddRange(IEnumerable objects)
     {
         if (objects is IEnumerable<ModelItem> items)
@@ -34,6 +43,8 @@ public class UsageTests: IFakeObjectsSaveTarget
     {
         repository = new Repository();
     }
+
+    #region Tests
 
     /// <summary>
     /// Create objects
@@ -134,7 +145,6 @@ public class UsageTests: IFakeObjectsSaveTarget
     /// Sometimes we need to create many different permutations of test data, then reference them
     /// all at once. Groups(X..Y) will handle this
     /// </remarks>
-
     [TestMethod]
     public void SearchMultiple()
     {
@@ -168,7 +178,11 @@ public class UsageTests: IFakeObjectsSaveTarget
     {
         // Given: A set of objects in the repository, one of which we care about
         // And: One more not yet added
-        var items = FakeObjects<ModelItem>.Make(20).SaveTo(this).Add(1, x => x.Details = "Some Details");
+        var items = FakeObjects<ModelItem>
+                        .Make(20)
+                        .SaveTo(this)
+                        .Add(1, x => x.Details = "Some Details");
+                        
         var id = items.Group(0).Last().ID;
         var newvalues = items.Group(1).Single();
 
@@ -180,4 +194,6 @@ public class UsageTests: IFakeObjectsSaveTarget
         Assert.AreEqual(newvalues.Name,actual.Name);
         Assert.AreEqual(newvalues.Details,actual.Details);
     }
+
+    #endregion
 }

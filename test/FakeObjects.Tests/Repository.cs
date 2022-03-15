@@ -9,6 +9,10 @@ namespace FakeObjects.Tests;
 /// <summary>
 /// Repository of items for use in testing
 /// </summary>
+/// <remarks>
+/// Not meant to be a production repository! Used as an example to make the tests
+/// look how we'd like
+/// </remarks>
 public class Repository : List<ModelItem>, IFakeObjectsSaveTarget
 {
     public new void AddRange(IEnumerable<ModelItem> items)
