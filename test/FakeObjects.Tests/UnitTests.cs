@@ -141,4 +141,25 @@ public class UnitTests
         Assert.IsTrue(items.All(x=>x.Amount == value));
     }
 
+    [TestMethod]
+    public void SaveTo()
+    {
+        // When: Making items and saving them to a save target
+        var repository = new Repository();
+        var items = FakeObjects<ModelItem>.Make(10).SaveTo(repository);
+
+        // Then: Items are correctly in the repository
+        Assert.IsTrue(repository.SequenceEqual(items));
+    }
+
+    [TestMethod]
+    public void SaveFirstGroup()
+    {
+        // When: Making items and saving some to a save target, and adding more
+        var repository = new Repository();
+        var items = FakeObjects<ModelItem>.Make(10).SaveTo(repository).Add(5);
+
+        // Then: Only first group are in the repository
+        Assert.IsTrue(repository.SequenceEqual(items.Group(0)));
+    }
 }

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+namespace FakeObjects.Tests;
+
 public class ModelItem
 {
     public int ID { get; set; }
