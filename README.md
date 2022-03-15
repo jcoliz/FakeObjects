@@ -50,7 +50,7 @@ public void AddItems()
     var items = FakeObjects<ModelItem>.Make(20);
 
     // When: Adding objects to the system
-    respository.AddRange(items);
+    repository.AddRange(items);
 
     // Then: The items were added
     var results = repository.GetItems();
@@ -62,7 +62,7 @@ public void AddItems()
 
 Commonly, we want a subset of objects to have a certain property we're looking for.
 Each call to Make or Add creates another group, starting at zero.
-In this example, Group(1) will contain the 10 items with "__test__" appended to the name.
+In this example, Group(1) will contain the 10 items with "\_\_test\_\_" appended to the name.
 
 ```c#
 [TestMethod]
@@ -70,10 +70,10 @@ public void Search()
 {
     // Given: A set of objects, where a subset has {word} in the name
     var word = "__test__";
-    var items = FakeObjects<ModelItem>.Make(20).Add(10, x => x.Name += test);
+    var items = FakeObjects<ModelItem>.Make(20).Add(10, x => x.Name += word);
 
     // And: The objects are in the repository
-    respository.AddRange(items);
+    repository.AddRange(items);
 
     // When: Searching for {word}
     var results = repository.Search(word);
@@ -99,19 +99,17 @@ public class TestClass: IFakeObjectsSaveTarget
     public void AddRange(IEnumerable objects)
     {
         if (objects is IEnumerable<ModelItem> items)
-        {
             repository.AddRange(items);
-        }
         else
             throw new NotImplementedException();
     }
 
     [TestMethod]
-    public void Search_V2()
+    public void SearchV2()
     {
         // Given: A set of objects in the repository, where a subset has {word} in the name
         var word = "__test__";
-        var items = FakeObjects<ModelItem>.Make(20).Add(10, x => x.Name += test).SaveTo(this);
+        var items = FakeObjects<ModelItem>.Make(20).Add(10, x => x.Name += word).SaveTo(this);
 
         // When: Searching for {word}
         var results = repository.Search(word);
@@ -124,7 +122,7 @@ public class TestClass: IFakeObjectsSaveTarget
 
 ### And more!
 
-Please review the full [Usage](.\docs\USAGE.md) docs for the complete reference
+Please review the [Usage Tests](.\test\FakeObjects.Tests\UsageTests.cs) for the complete reference
 of use cases.
 
 ## Code of conduct
