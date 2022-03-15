@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FakeObjects.Tests;
 
+/// <summary>
+/// Example items to create fake objects from
+/// </summary>
 public class ModelItem
 {
     public int ID { get; set; }
