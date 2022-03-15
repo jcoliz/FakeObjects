@@ -122,7 +122,7 @@ public class TestClass: IFakeObjectsSaveTarget
 
 ### And more!
 
-Please review the [Usage Tests](.\test\FakeObjects.Tests\UsageTests.cs) for the complete reference
+Please review the [Usage Tests](https://github.com/jcoliz/FakeObjects/blob/main/test/FakeObjects.Tests/UsageTests.cs) for the complete reference
 of use cases.
 
 ## Code of conduct
@@ -132,4 +132,4 @@ community a harassment-free experience for everyone. We pledge to act and
 interact in ways that contribute to an open, welcoming, diverse, inclusive, 
 and healthy community.
 
-Please review the [Code of conduct](/code_of_conduct.md) for more details.
+Please review the [Code of conduct](https://github.com/jcoliz/FakeObjects/blob/main/code_of_conduct.md) for more details.
