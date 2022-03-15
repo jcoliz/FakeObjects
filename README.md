@@ -1,11 +1,10 @@
 # Fake Objects
 
 This is a .NET Core 3.1 library for creating fake objects used in tests. 
-It can be used in an application built on any version of .NET Core from 3.1 onward, include .NET 6.0.
+It can be used in applications built on any version of .NET from Core 3.1 onward, including .NET 6.0.
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md) 
 [![Build+Test](https://github.com/jcoliz/FakeObjects/actions/workflows/buildtest.yml/badge.svg)](https://github.com/jcoliz/FakeObjects/actions/workflows/buildtest.yml)
-
 
 ## Usage
 
@@ -22,7 +21,7 @@ fake objects. Do this by marking them "Editable(true)". In the example below, th
 library will only fill in values for the Name and Date properties.
 
 ```c#
-using System.ComponentModel.Annotations;
+using System.ComponentModel.DataAnnotations;
 
 public class ModelItem
 {
@@ -89,7 +88,7 @@ public void Search()
 Any time we are adding objects to the system under test during the "Given" phase of a test,
 it's a good time to use the "SaveTo()" feature. In this example, we implement 
 IFakeObjectsSaveTarget directly in the test class. You can also implement it directly,
-for example in a mock repository of items
+for example in a mock repository of items.
 
 ```c#
 using System.Collections;
