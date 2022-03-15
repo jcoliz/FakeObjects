@@ -84,4 +84,61 @@ public class UnitTests
         Assert.IsNotNull(item.Children);
     }
 
+    [TestMethod]
+    public void AddCount()
+    {
+        // When: Making some items and adding more
+        var items = FakeObjects<ModelItem>.Make(5).Add(10);
+
+        // Then: Correct number of items were made
+        Assert.AreEqual(15,items.Count);        
+    }
+
+    [TestMethod]
+    public void AddGroups()
+    {
+        // When: Making some items and adding more
+        var items = FakeObjects<ModelItem>.Make(5).Add(10);
+
+        // Then: Correct number of items were made in each group
+        Assert.AreEqual(5,items.Group(0).Count);
+        Assert.AreEqual(10,items.Group(1).Count);
+    }
+
+    [TestMethod]
+    public void AddGroupsRange()
+    {
+        // Given: Some items and adding many more groups
+        var items = FakeObjects<ModelItem>.Make(1).Add(2).Add(3).Add(4).Add(5);
+
+        // When: Getting a group range 
+        // (This returns 1,2,3,4)
+        var groups = items.Groups(0..4);
+
+        // Then: Correct number of items were included
+        Assert.AreEqual(1+2+3+4,groups.Count());
+    }
+
+    [TestMethod]
+    public void ModifyString()
+    {
+        // When: Making an item while modifying the string property
+        var word = "__TEST__";
+        var item = FakeObjects<ModelItem>.Make(1,x=>x.Name+=word).Single();
+
+        // Then: The property was filled in correctly
+        Assert.IsTrue(item.Name!.Contains(word));
+    }
+
+    [TestMethod]
+    public void ModifyDecimal()
+    {
+        // When: Making many items while explicitly setting the decimal property
+        var value = 12345.67m;
+        var items = FakeObjects<ModelItem>.Make(10,x=>x.Amount = value);
+
+        // Then: All properties were filled in correctly
+        Assert.IsTrue(items.All(x=>x.Amount == value));
+    }
+
 }
