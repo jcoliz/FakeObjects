@@ -5,5 +5,5 @@ public class ChildItem
     public int ID { get; set; }
 
     [Editable(true)]
-    public string? Name { get; set; }
+    public string? Comment { get; set; }
 }

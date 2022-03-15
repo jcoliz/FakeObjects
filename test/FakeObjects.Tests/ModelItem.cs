@@ -12,6 +12,9 @@ public class ModelItem
     [Editable(true)]
     public DateTime Date { get; set; }
 
+    [Editable(true)]
+    public decimal Amount { get; set; }
+
     public string? Details { get; set; }
 
     public ICollection<ChildItem>? Children { get; set; }
