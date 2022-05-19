@@ -32,6 +32,17 @@ public class UnitTests
     }
 
     [TestMethod]
+    public void Int()
+    {
+        // When: Making some items each with an int property
+        var items = FakeObjects<ModelItem>.Make(3);
+
+        // Then: The property was filled in correctly
+        int i = 1;
+        Assert.IsTrue(items.All(x=>x.Index == i++));
+    }
+
+    [TestMethod]
     public void DateTime()
     {
         // When: Making two items with datetime properties

@@ -20,6 +20,9 @@ public class ModelItem
     [Editable(true)]
     public decimal Amount { get; set; }
 
+    [Editable(true)]
+    public int Index { get; set; }
+
     public string? Details { get; set; }
 
     public ICollection<ChildItem>? Children { get; set; }
