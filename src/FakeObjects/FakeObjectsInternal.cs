@@ -35,6 +35,20 @@ namespace jcoliz.FakeObjects
         }
 
         /// <summary>
+        /// Add another group of fake objects to this one, accepting an index parameter
+        /// </summary>
+        /// <param name="count">How many objects</param>
+        /// <param name="func">What changes to make on them</param>
+        public IFakeObjects<T> Add(int count, Action<T,int> func)
+        {
+            var adding = GivenFakeItems<T>(count, func, 1 + Count).ToList();
+            Items.Add(adding);
+            Count += adding.Count;
+
+            return this;
+        }
+
+        /// <summary>
         /// Apply an operation to all items
         /// </summary>
         /// <param name="func">What changes to make</param>
@@ -125,6 +139,27 @@ namespace jcoliz.FakeObjects
             if (func != null)
                 foreach (var i in result)
                     func(i);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Create the set of fake objects, passing in an index
+        /// </summary>
+        /// <param name="num">How many items to create</param>
+        /// <param name="func">Action to take on each created item</param>
+        /// <param name="from">What index number are we starting at?</param>
+        protected static List<TItem> GivenFakeItems<TItem>(int num, Action<TItem,int> func, int from) where TItem : class, new()
+        {
+            var result = Enumerable
+                .Range(from, num)
+                .Select(x => GivenFakeItem<TItem>(x))
+                .ToList();
+
+            int index = from;
+            if (func != null)
+                foreach (var i in result)
+                    func(i,index++);
 
             return result;
         }

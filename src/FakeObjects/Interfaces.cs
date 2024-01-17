@@ -42,6 +42,13 @@ namespace jcoliz.FakeObjects
         IFakeObjects<T> Add(int count, Action<T> func = null);
 
         /// <summary>
+        /// Add another group of fake objects to this one, accepting an index
+        /// </summary>
+        /// <param name="count">How many objects</param>
+        /// <param name="func">What changes to make on them</param>
+        IFakeObjects<T> Add(int count, Action<T,int> func);
+
+        /// <summary>
         /// Apply an operation to all items
         /// </summary>
         /// <param name="func">What changes to make</param>

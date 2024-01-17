@@ -163,6 +163,31 @@ public class UnitTests
         Assert.IsTrue(items.All(x=>x.Amount == value));
     }
 
+    [DataRow(10)]
+    [DataTestMethod]
+    public void MakeIndex(int count)
+    {
+        // When: Making {count} items, and adjusting the amount based on an index
+        var items = FakeObjects<ModelItem>.Make(count, (x, i) => x.Amount = i * 123m);
+
+        // Then: All items have expected amount
+        Assert.IsTrue(items.All(x => x.Index == x.Amount / 123m));
+    }
+
+    [TestMethod]
+    public void AddGroupsIndex()
+    {
+        // When: Making some items and adding more, and adjusting the amount based on an index
+        var items = FakeObjects<ModelItem>.Make(5).Add(10, (x, i) => x.Amount = i * 123m);
+
+        // Then: All items have expected amount
+        Assert.IsTrue(items.Group(0).All(x => x.Index == x.Amount / 100m));
+        Assert.IsTrue(items.Group(1).All(x => x.Index == x.Amount / 123m));
+
+        // NOTE: Under normal conditions, amount will be 100x Index.
+        // For the second group, we're changing the factor to 123x
+    }
+
     [TestMethod]
     public void SaveTo()
     {

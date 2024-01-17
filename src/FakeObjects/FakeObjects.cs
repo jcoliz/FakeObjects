@@ -16,5 +16,15 @@ namespace jcoliz.FakeObjects
         {
             return new FakeObjectsInternal<T>().Add(count,func);
         }
+
+        /// <summary>
+        /// Make the initial set of fake objects, accepting an index parameter
+        /// </summary>
+        /// <param name="count">How many objects</param>
+        /// <param name="func">What changes to make on them</param>
+        public static IFakeObjects<T> Make(int count, Action<T,int> func)
+        {
+            return new FakeObjectsInternal<T>().Add(count, func);
+        }
     }
 }
