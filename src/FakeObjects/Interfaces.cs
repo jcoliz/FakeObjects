@@ -42,6 +42,12 @@ namespace jcoliz.FakeObjects
         IFakeObjects<T> Add(int count, Action<T> func = null);
 
         /// <summary>
+        /// Apply an operation to all items
+        /// </summary>
+        /// <param name="func">What changes to make</param>
+        IFakeObjects<T> ApplyToAll(Action<T> func = null);
+
+        /// <summary>
         /// Save all objects created sofar to the chosen target
         /// </summary>
         /// <param name="target">Where to save them</param>

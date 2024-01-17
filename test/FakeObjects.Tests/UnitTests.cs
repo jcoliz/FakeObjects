@@ -117,6 +117,17 @@ public class UnitTests
     }
 
     [TestMethod]
+    public void ChangeAll()
+    {
+        // When: Making some items, adding more, and apply a change to all
+        var value = 12345.67m;
+        var items = FakeObjects<ModelItem>.Make(5).Add(10).ApplyToAll(x=>x.Amount = value);
+
+        // Then: All properties were filled in correctly
+        Assert.IsTrue(items.All(x => x.Amount == value));
+    }
+
+    [TestMethod]
     public void AddGroupsRange()
     {
         // Given: Some items and adding many more groups

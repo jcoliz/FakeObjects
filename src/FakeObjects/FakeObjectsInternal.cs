@@ -35,6 +35,23 @@ namespace jcoliz.FakeObjects
         }
 
         /// <summary>
+        /// Apply an operation to all items
+        /// </summary>
+        /// <param name="func">What changes to make</param>
+        public IFakeObjects<T> ApplyToAll(Action<T> func)
+        {
+            foreach (var groups in Items)
+            {
+                foreach (var item in groups)
+                {
+                    func(item);
+                }
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Pick one particular series
         /// </summary>
         /// <param name="index">Which series</param>

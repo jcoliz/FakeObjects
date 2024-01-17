@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net60</TargetFramework>
     <PackageId>jcoliz.FakeObjects</PackageId>
     <Version>$(GitVersion)</Version>
-    <Description>This is a .NET Core 3.1 library for creating fake objects used in tests. It can be used in applications built on any version of .NET from Core 3.1 onward, including .NET 6.0.</Description>
+    <Description>This is a .NET library for creating fake objects used in tests. It can be used in applications built on any version of .NET from 6.0 onward.</Description>
     <PackageProjectUrl>https://github.com/jcoliz/FakeObjects</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReleaseNotes>$(ReleaseNotes)</PackageReleaseNotes>
