@@ -1,7 +1,7 @@
 # Fake Objects
 
-This is a .NET Core 3.1 library for creating fake objects used in tests. 
-It can be used in applications built on any version of .NET from Core 3.1 onward, including .NET 6.0.
+This is a .NET library for creating fake objects used in tests. 
+It can be used in applications built on any version of .NET from 6.0 onward.
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md) 
 [![Build+Test](https://github.com/jcoliz/FakeObjects/actions/workflows/buildtest.yml/badge.svg)](https://github.com/jcoliz/FakeObjects/actions/workflows/buildtest.yml)
