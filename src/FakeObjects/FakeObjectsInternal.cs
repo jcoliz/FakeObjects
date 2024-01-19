@@ -13,7 +13,7 @@ namespace jcoliz.FakeObjects
         /// <summary>
         /// All items created to date
         /// </summary>
-        private List<List<T>> Items = new List<List<T>>();
+        private readonly List<List<T>> Items = new();
 
         /// <summary>
         /// Total number of items
@@ -66,13 +66,31 @@ namespace jcoliz.FakeObjects
         }
 
         /// <summary>
+        /// Apply an operation to all items, accepting an index
+        /// </summary>
+        /// <param name="func">What changes to make</param>
+        public IFakeObjects<T> ApplyToAll(Action<T,int> func)
+        {
+            var index = 1;
+            foreach (var groups in Items)
+            {
+                foreach (var item in groups)
+                {
+                    func(item,index++);
+                }
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Pick one particular series
         /// </summary>
         /// <param name="index">Which series</param>
         /// <returns>A list of all items in the chosen series</returns>
         public IList<T> Group(int index)
         {
-            if (index >= Items.Count())
+            if (index >= Items.Count)
                 throw new IndexOutOfRangeException();
 
             return Items.Skip(index).First();
@@ -90,7 +108,7 @@ namespace jcoliz.FakeObjects
 
             var skip = index.Start.Value;
 
-            if (skip >= Items.Count())
+            if (skip >= Items.Count)
                 throw new IndexOutOfRangeException();
 
             var take = index.End.IsFromEnd ? Items.Count - index.End.Value - skip : index.End.Value - skip;

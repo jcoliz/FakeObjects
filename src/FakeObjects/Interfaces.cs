@@ -52,7 +52,13 @@ namespace jcoliz.FakeObjects
         /// Apply an operation to all items
         /// </summary>
         /// <param name="func">What changes to make</param>
-        IFakeObjects<T> ApplyToAll(Action<T> func = null);
+        IFakeObjects<T> ApplyToAll(Action<T> func);
+
+        /// <summary>
+        /// Apply an operation to all items, accepting an index
+        /// </summary>
+        /// <param name="func">What changes to make</param>
+        IFakeObjects<T> ApplyToAll(Action<T,int> func);
 
         /// <summary>
         /// Save all objects created sofar to the chosen target
