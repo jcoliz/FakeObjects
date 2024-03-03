@@ -33,6 +33,14 @@ namespace jcoliz.FakeObjects
 
             return this;
         }
+        public IFakeObjects<T> Add(int count, Func<T,T> func)
+        {
+            var adding = GivenFakeItems<T>(count, func, 1 + Count).ToList();
+            Items.Add(adding);
+            Count += adding.Count;
+
+            return this;
+        }
 
         /// <summary>
         /// Add another group of fake objects to this one, accepting an index parameter
@@ -157,6 +165,21 @@ namespace jcoliz.FakeObjects
             if (func != null)
                 foreach (var i in result)
                     func(i);
+
+            return result;
+        }
+
+        protected static List<TItem> GivenFakeItems<TItem>(int num, Func<TItem,TItem> func, int from = 1) where TItem : class, new()
+        {
+            var result = Enumerable
+                .Range(from, num)
+                .Select(x => GivenFakeItem<TItem>(x))
+                .ToList();
+
+            if (func != null)
+            {
+                result = result.Select(func).ToList();            
+            }
 
             return result;
         }

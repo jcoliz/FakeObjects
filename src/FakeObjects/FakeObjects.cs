@@ -14,7 +14,12 @@ namespace jcoliz.FakeObjects
         /// <param name="func">What changes to make on them</param>
         public static IFakeObjects<T> Make(int count, Action<T> func = null)
         {
-            return new FakeObjectsInternal<T>().Add(count,func);
+            return new FakeObjectsInternal<T>().Add(count, func);
+        }
+
+        public static IFakeObjects<T> Make(int count, Func<T,T> func)
+        {
+            return new FakeObjectsInternal<T>().Add(count, func);
         }
 
         /// <summary>
