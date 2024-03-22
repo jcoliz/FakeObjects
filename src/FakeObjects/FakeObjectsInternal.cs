@@ -240,6 +240,8 @@ namespace jcoliz.FakeObjects
                     // Note that datetimes should descend, because anything which sorts by a datetime
                     // will typically sort descending
                     o = new DateTime(2001, 12, 31) - TimeSpan.FromDays(index);
+                else if (t == typeof(Guid))
+                    o = Guid.NewGuid();
                 else if (t.IsClass)
                     o = GivenFakeItem_t(t, index);
                 else
