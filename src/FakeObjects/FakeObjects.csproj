@@ -14,6 +14,7 @@
     <Company>jcoliz</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>    
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
