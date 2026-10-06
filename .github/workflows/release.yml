@@ -21,6 +21,8 @@ jobs:
       - name: Build and Test
         run: dotnet test /p:Configuration=Release --verbosity normal
       - name: Pack
-        run: dotnet pack /p:Configuration=Release /p:GitVersion=${GITHUB_REF#refs/tags/} /p:ReleaseNotes="${{ github.event.release.body }}" --no-build --verbosity normal
+        run: dotnet pack /p:Configuration=Release /p:GitVersion=${GITHUB_REF#refs/tags/} /p:ReleaseNotes="$RELEASE_NOTES" --no-build --verbosity normal
+        env:
+          RELEASE_NOTES: ${{ github.event.release.body }}
       - name: Publish NuGets (if this version not published before)
         run: dotnet nuget push **\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN_2022 }} --skip-duplicate
